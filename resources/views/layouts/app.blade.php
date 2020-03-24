@@ -6,12 +6,13 @@
         <link href="{{asset('css/app.css')}}" rel="stylesheet">
         <title>{{config('app.name', 'MultipleLocationRouter')}}</title>
     </head>
-    <body>
+    <body class="container-fluid">
         @include('includes.nav')
         <br>
         <br>
-        <div class="container">
+        <div class="container-fluid">
             @yield('content')
+            @yield('scripts')
         </div>
     </body>
 </html>
