@@ -8,8 +8,6 @@
     </head>
     <body class="container-fluid">
         @include('includes.nav')
-        <br>
-        <br>
         <div class="container-fluid">
             @yield('content')
             @yield('scripts')

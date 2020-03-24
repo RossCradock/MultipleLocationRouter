@@ -1,10 +1,53 @@
-<div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-    <div class="col p-4 d-flex flex-column position-static">
-        <div class="mb-1 text-muted">Nov 12</div>
-        <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="stretched-link">Continue reading</a>
-    </div>
-    <div class="col-auto d-none d-lg-block">
-        <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-    </div>
+<h2 class="ml-2 mr-2 mb-3">home</h2>
+<div class="row no-gutters border rounded flex-md-row m-2 shadow-sm position-relative">
+    <div class="container-fluid mt-4 mb-4 mr-2">
+        <div class="row">
+            <div class="col-6">
+            	<div class="form-group mt-4">
+           		    <input type="text" id="address-input" name="address_address" class="form-control map-input" placeholder="Enter home location">
+		            <input type="hidden" name="address_latitude" id="address-latitude" value="0" />
+                    <input type="hidden" name="address_longitude" id="address-longitude" value="0" />
+                </div>
+            </div>
+            <div class="col-2 mt-3 pr-0">
+                <div class="container-fluid p-0">
+                    <div class="row m-1">
+                        Address Line 1:
+                    </div>
+                    <div class="row m-1">
+                        Address Line 2:
+                    </div>
+                    <div class="row m-1">
+                        Address Line 3:
+                    </div>
+                    <div class="row m-1">
+                        Postcode:
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 mt-3 pl-0">
+                <div class="container-fluid">
+                    <div class="row m-1">
+                        38 Acorn Walk
+                    </div>
+                    <div class="row m-1">
+                        Beech Court
+                    </div>
+                    <div class="row m-1">
+                        London
+                    </div>
+                    <div class="row m-1">
+                        SE165DU
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
 </div>
+
+{{-- google api scripts --}}
+@section('scripts')
+    @parent
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places&callback=initialize" async defer></script>
+    <script src="js/mapInput.js"></script>
+@stop

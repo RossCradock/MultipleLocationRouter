@@ -3,7 +3,6 @@
 <div class="row">
     <div id="locations" class="col-6"> 
         <div id="homeLocation"> 
-            <h2>home</h2>
             @include('includes.homeLocation')
             <div id="workplaceAndRoutes" class="container-fluid justify-content-center h-100">
                 <div class="row justify-content-center">
@@ -15,7 +14,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <button type="button" class="btn btn-primary p-2 mt-4 m-2 justify-content-center flex-grow-1">Primary</button>
+                    <button type="button" class="btn btn-primary p-2 mt-4 m-2 justify-content-center flex-grow-1">Add Workplace +</button>
                 </div>
             </div>
         </div>
