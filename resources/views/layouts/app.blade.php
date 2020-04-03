@@ -6,8 +6,8 @@
         <link href="{{asset('css/app.css')}}" rel="stylesheet">
         <title>{{config('app.name', 'MultipleLocationRouter')}}</title>
     </head>
+    @include('includes.nav')
     <body class="container-fluid">
-        @include('includes.nav')
         <div class="container-fluid">
             @yield('content')
             @yield('scripts')

@@ -9,11 +9,9 @@
 <h2>workplace</h2>
 <div class="no-gutters border rounded shadow-sm h-75">
 	<div class="p-4">
-	{{-- https://laraveldaily.com/laravel-find-addresses-with-coordinates-via-google-maps-api/ --}} 
+		{{-- https://stackoverflow.com/questions/3059044/google-maps-js-api-v3-simple-multiple-marker-example --}}
 		<div class="form-group mt-3">
-			<input type="text" placeholder="Enter workplace location" id="address-input" name="address_address" class="form-control map-input">
-			<input type="hidden" name="address_latitude" id="address-latitude" value="0" />
-			<input type="hidden" name="address_longitude" id="address-longitude" value="0" />
+			<input type="text" placeholder="Enter workplace location" id="pac-input-workplace" class="form-control map-input">
 		</div>
 
 		{{-- https://hdtuto.com/article/laravel-timepicker-example-using-bootstrap-datetimepicker-plugin 
@@ -31,10 +29,3 @@
         </script> 
     </div>
 </div>
-
-{{-- google api scripts --}}
-@section('scripts')
-    @parent
-    <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places&callback=initialize" async defer></script>
-    <script src="js/mapInput.js"></script>
-@stop

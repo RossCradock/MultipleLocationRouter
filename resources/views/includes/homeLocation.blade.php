@@ -4,9 +4,7 @@
         <div class="row">
             <div class="col-6">
             	<div class="form-group mt-4">
-           		    <input type="text" id="address-input" name="address_address" class="form-control map-input" placeholder="Enter home location">
-		            <input type="hidden" name="address_latitude" id="address-latitude" value="0" />
-                    <input type="hidden" name="address_longitude" id="address-longitude" value="0" />
+           		    <input type="text" id="pac-input-homelocation" class="form-control map-input" placeholder="Enter home location">
                 </div>
             </div>
             <div class="col-2 mt-3 pr-0">
@@ -44,10 +42,3 @@
         </div>
 	</div>
 </div>
-
-{{-- google api scripts --}}
-@section('scripts')
-    @parent
-    <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places&callback=initialize" async defer></script>
-    <script src="js/mapInput.js"></script>
-@stop
