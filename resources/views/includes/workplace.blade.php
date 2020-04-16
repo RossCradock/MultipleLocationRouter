@@ -6,26 +6,23 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
 <script src="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/src/js/bootstrap-datetimepicker.js"></script>
 
-<h2>workplace</h2>
-<div class="no-gutters border rounded shadow-sm h-75">
+<div class="no-gutters border rounded shadow-sm" style="background-color: #FAFAFA;">
+	<div id="workplace_color_top_border{{ $workplaceNo }}" style="height: 0.4em; background-color:blueviolet; border-top-left-radius: 2px; border-top-right-radius: 2px;"></div>
 	<div class="p-4">
-		{{-- https://stackoverflow.com/questions/3059044/google-maps-js-api-v3-simple-multiple-marker-example --}}
-		<div class="form-group mt-3">
-			<input type="text" placeholder="Enter workplace location" id="pac-input-workplace" class="form-control map-input">
+		<p class="card-text mb-auto text-muted" style="padding-left: 0.5%">Enter workplace below:</p>
+		<div class="form-group">
+			<input type="text" placeholder="Enter workplace location" id="pac_input_workplace{{ $workplaceNo }}" onfocus="setWorkplaceNumber({{ $workplaceNo }})" class="form-control map-input">
 		</div>
-
-		{{-- https://hdtuto.com/article/laravel-timepicker-example-using-bootstrap-datetimepicker-plugin 
-			 http://eonasdan.github.io/bootstrap-datetimepicker/#time-only --}}
-		<p class="card-text mb-auto" style="padding-left: 0.5%; padding-top: 2%">Enter arrival time at work destination below:</p>
-        <div>
-            <div style="position: relative; padding-top: 2%">
-				<input class="timepicker form-control" placeholder="Enter arrival time (00:00)" type="text">
+		<p class="card-text mb-auto text-muted" style="padding-left: 0.5%">Enter arrival time at work destination below:</p>
+        <div class="mb-2">
+            <div>
+				<input type="text" class="timepicker form-control" id="input_time{{ $workplaceNo }}" value="09:00" onfocus="setWorkplaceNumber({{ $workplaceNo }})" onfocusout="timeChanged(this.value)">
             </div>
         </div>
         <script type="text/javascript">
             $('.timepicker').datetimepicker({
 				format: 'HH:mm'
-            }); 
+			}); 
         </script> 
     </div>
 </div>

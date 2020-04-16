@@ -11,10 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('pages.home');
+Route::group(['middleware' => 'cors'], function () {
+    Route::get('/', function () {
+        return view('pages.home');
+    });
 });
-
 
 Route::get('/routes', function () {
     $endpoint = "http://my.domain.com/test.php";
