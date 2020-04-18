@@ -1,9 +1,9 @@
-<h2 class="ml-2 mr-2 mb-3">home</h2>
+<h2 class="ml-2 mr-2 mb-3">home location</h2>
 <div class="row no-gutters border rounded flex-md-row m-2 shadow-sm position-relative" style="background-color: #FAFAFA;">
     <div class="container-fluid mt-4 mb-4 mr-2">
         <div class="row">
             <div class="col-5">
-		        <p class="card-text mb-auto text-muted" style="padding-left: 0.5%; padding-top: 2%">Enter workplace below:</p>
+		        <p id="homelocation_hint" class="card-text mb-auto text-muted" style="padding-left: 0.5%; padding-top: 2%">Enter new home location below:</p>
             	<div class="form-group">
            		    <input type="text" id="pac_input_homelocation" class="form-control map-input" placeholder="Enter home location">
                 </div>
@@ -17,7 +17,7 @@
                                     <strong>Address</strong>
                                 </div>
                                 <div class="col-9 pt-2">
-                                    <p id="address_line">&NonBreakingSpace;</p>
+                                    <p id="address_line" class="display-4" style="font-size: 20px">&NonBreakingSpace;</p>
                                 </div>
                             </div>
                         </div>
@@ -29,7 +29,7 @@
                                     <strong>Postcode</strong>
                                 </div>
                                 <div class="col-9 pt-2">
-                                    <p id="postcode">&NonBreakingSpace;</p>
+                                    <p id="postcode" class="display-4" style="font-size: 20px">&NonBreakingSpace;</p>
                                 </div>
                             </div>
                         </div>

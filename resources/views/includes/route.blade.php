@@ -8,7 +8,7 @@
 				        <option value="driving">Driving (best estimate with traffic)</option>
 				        <option value="walking">Walking</option>
 				        <option value="bicycling">Cycling</option>
-				        <option value="transit">Transit (arriving before set arrival time)</option>
+				        <option value="transit">Transit (may arrive before arrival time)</option>
 			        </select>
                 </div>
             </div>
@@ -18,7 +18,7 @@
                 <strong class="pl-4">Commute Time</strong>
             </div>
             <div class="col-7">
-                <p id="commute_time{{ $workplaceNo }}">&NonBreakingSpace;</p>
+                <p id="commute_time{{ $workplaceNo }}" class="display-4" style="font-size: 20px">&NonBreakingSpace;</p>
             </div>
         </div>
         <div class="row">
@@ -26,7 +26,7 @@
                 <strong class="pl-4">Departure Time</strong>
             </div>
             <div class="col-7">
-                <p id="departure_time{{ $workplaceNo }}" class="mb-0">&NonBreakingSpace;</p>
+                <p id="departure_time{{ $workplaceNo }}" class="display-4 mb-0" style="font-size: 20px">&NonBreakingSpace;</p>
             </div>
         </div>
     </div>

@@ -18,11 +18,11 @@ var directionsRenderers = [];
 
 var directionsService;
 var colours = [
-    '#CD533B',
-    '#C7AC92',
-    '#C0BABC',
-    '#C2EABD',
-    '#DCF2B0'
+    '#6A9491', // dark aqua
+    '#5F0F40', // purple
+    '#C88D29', // saffron
+    '#9A031E', // dark red
+    '#8E8358' // tan
 ];
 
 var map;
@@ -36,6 +36,7 @@ function initMap(){
         streetViewControl: false,
         fullscreenControl: false
     });
+
     
     // homelocation
     var input_homelocation = document.getElementById('pac_input_homelocation');
@@ -79,8 +80,7 @@ function fillInHomeAddress(){
     // get home location lat long and add marker
     var marker = new google.maps.Marker({
         position: place.geometry.location,
-        title: 'Home',
-        label: 'H'
+        title: 'Home'
     });
     setMarker(marker, 5);
 
@@ -91,9 +91,8 @@ function fillInHomeAddress(){
 }
 
 function fillInWorkplaceAddress(){
-    try {
-        var place = autocomplete_workplaces[workplace_number].getPlace();
-    } catch (error) {
+    var place = autocomplete_workplaces[workplace_number].getPlace();
+    if (typeof place == 'undefined'){
         // no place set (empty input field or address doesn't exist)
         return;
     }
@@ -101,7 +100,7 @@ function fillInWorkplaceAddress(){
         position: place.geometry.location,
         title: 'Workplace',
         label: {
-            text: '•', // (workplace_number + 1).toString(),
+            text: '•', 
             fontSize: '28px',
             color: 'white'
         },
@@ -116,6 +115,11 @@ function fillInWorkplaceAddress(){
     });
     setMarker(marker, workplace_number)
     setRouting(workplace_number)
+
+    // change hint above home location to say it can be updated when home and workplace are updated
+    if (markers[5] != null){
+        document.getElementById('homelocation_hint').innerHTML = 'Change home location to update routes:';
+    }
 }
 
 function setMarker(marker, marker_number){
@@ -138,7 +142,6 @@ function setMarker(marker, marker_number){
         }
     }
     map.fitBounds(bounds);
-    map.setZoom(map.getZoom() - 0.3);
 
     // add marker to map
     marker.setMap(map)
@@ -180,8 +183,8 @@ function setRouting(workplace_number){
         // console.log('failed at 1 ', 'time set?: ',time_set[workplace_number], ' marker set?: ', markers[workplace_number], ' workplace number: ', workplace_number);
         return;
     } else if (markers[5] === null){
-        // console.log('failed at 2');
         // home is not set
+        // console.log('failed at 2');
         return;
     } else {
         // both time and place are set do the routing
@@ -221,6 +224,23 @@ function setRouting(workplace_number){
                 route_api_request.transitOptions = {
                     arrivalTime: arrival_time
                 };
+                // remove previous transitline markers
+                for (let i = 0; i < workplace_element_added_number; i++){
+                    if (i == workplace_number) continue; 
+
+                    if (directionsRenderers[i].getDirections().request.travelMode == 'TRANSIT'){
+                        var transit_steps_length = directionsRenderers[i].getDirections().routes[0].legs[0].steps.length;
+                        for (let j = 0; j < transit_steps_length - 1; j++){
+                            try {
+                                directionsRenderers[i].getDirections().routes[0].legs[0].steps[j].transit = null;
+                            } catch (err) {
+                                // no transitline in this step
+                            }
+                        }
+                        directionsRenderers[i].setMap(map);
+                    }
+                }
+                break;
         }
 
         directionsService.route(route_api_request, function(response, status) {
@@ -256,7 +276,14 @@ function setRouting(workplace_number){
                             break;
                         case 'transit':
                             duration = route_leg.duration.text;
-                            departure_time = dateToDepartureTime(new Date(route_leg.departure_time.value));
+                            try {
+                                departure_time = dateToDepartureTime(new Date(route_leg.departure_time.value));
+                            } catch (err) {
+                                // for when there is only walking since response will not contain departure time
+                                duration = route_leg.duration.text;
+                                departure_time = new Date(arrival_time - (route_leg.duration.value * 1000));
+                                departure_time = dateToDepartureTime(departure_time);
+                            }
                             break;
                         default:
                             duration = route_leg.duration.text;
@@ -275,7 +302,9 @@ function setRouting(workplace_number){
 
 function dateToDepartureTime(date){
     var hours;
+    var minutes;
     var meridian;
+
     if (date.getHours() > 12) {
        hours = date.getHours() - 12;
        meridian = ' pm' 
@@ -283,5 +312,6 @@ function dateToDepartureTime(date){
         hours = date.getHours();
         meridian = ' am';
     }
-    return hours.toString().concat(':', date.getMinutes().toString(), meridian);
+    minutes = ('0' + date.getMinutes()).slice(-2);
+    return hours.toString().concat(':', minutes.toString(), meridian);
 }

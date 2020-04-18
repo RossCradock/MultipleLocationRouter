@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<div class="row">
+<div class="row pl-4 pr-4">
     <div id="locations" class="col-6"> 
         <div id="homeLocation"> 
             @include('includes.homeLocation')
@@ -73,18 +73,20 @@
             </div>
         </div>
     </div>
-    <div id="map" class="col-6">
+    <div id="map" class="col-6" style="position: fixed; right: 20px">
         <h2 style="visibility: hidden">home</h2>
         @include('includes.map')
     </div>
 </div>
 @endsection
+
 @section('scripts')
     @parent
     <script src="{{ URL::asset('js/map.js') }}"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key={{ env('GOOGLE_MAPS_API_KEY') }}&libraries=places&callback=initMap"
     async defer></script>
 @stop
+
 {{-- 
 TODO
     •might need to change these into one big js file
@@ -126,16 +128,24 @@ TODO
             •commute time will need some work on how its displayed
             •departure time will be max time
         •transit commute can have arrival time
-        transit with just walking throws cannot read property value undefined. Need to error handle this to look for another duration or arrival time value
+        •transit with just walking throws cannot read property value undefined. Need to error handle this to look for another duration or arrival time value
+        •departure time shows no zero, might a parse int issue
+        
+    •might need to have a tick box for setting the transit labels
     
+    •update to new home location
+
     https://coolors.co/d6a2ad-c3b59f-a0af84-668f80-4a6670
         •need to have markers the same colour as the route and remove the number as well
-        background colour needs to be changed
-        change the H colour to white or something else
-        text for times needs to be changed
-        nav bar needs to be changed maybe with a logo
-        
+        •background colour needs to be changed
+        •change the H colour to white or something else
+        •text for times needs to be changed
+        •nav bar needs to be changed maybe with a logo
+            •top div for name off-white
 
+    meta data
+        need to figure out where i put in meta tag to be involved in seo results 
+        need to write up meta data
 
     Calculate costs and gains for putting in ads and setting it live
         money made from ads - google maps api - aws costs
@@ -145,6 +155,19 @@ TODO
     Add in some kind of rate limiting
 
     Have a dns set up for it
+        newhomecommutefinder
+        homecommutefinder
+        householdcommute
+        housematescommutecalulator
+        housematecommutecalulator
+        housematesnewcommute
+        myhousematescommute
+        ournewhomecommute
+        ournewhousecommute
+        housecommutefinder
+
+        commute house/home / rent / trip
+
 
     Set up meta data for robots and search
 --}}
