@@ -40,7 +40,7 @@ function initMap(){
     
     // homelocation
     var input_homelocation = document.getElementById('pac_input_homelocation');
-    autocomplete_homelocation = new google.maps.places.Autocomplete(input_homelocation, {types: ['geocode']});
+    autocomplete_homelocation = new google.maps.places.Autocomplete(input_homelocation, {types: ['geocode', 'establishment']});
     autocomplete_homelocation.setFields(['address_component', 'geometry']);
     autocomplete_homelocation.addListener('place_changed', fillInHomeAddress);
 
