@@ -135,6 +135,8 @@ TODO
     
     •update to new home location
 
+    •transit line needs to be tested
+
     https://coolors.co/d6a2ad-c3b59f-a0af84-668f80-4a6670
         •need to have markers the same colour as the route and remove the number as well
         •background colour needs to be changed
@@ -144,13 +146,13 @@ TODO
             •top div for name off-white
 
     meta data
-        need to figure out where i put in meta tag to be involved in seo results 
-        need to write up meta data
+        •need to figure out where i put in meta tag to be involved in seo results 
+        •need to write up meta data
 
     Calculate costs and gains for putting in ads and setting it live
         money made from ads - google maps api - aws costs
 
-    Add in an adds banner down the bottom
+    Add in an ads banner down the bottom
 
     Add in some kind of rate limiting
 
@@ -168,6 +170,7 @@ TODO
 
         commute house/home / rent / trip
 
+        myhousematescommute
 
     Set up meta data for robots and search
 --}}

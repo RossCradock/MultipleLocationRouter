@@ -224,22 +224,9 @@ function setRouting(workplace_number){
                 route_api_request.transitOptions = {
                     arrivalTime: arrival_time
                 };
-                // remove previous transitline markers
-                for (let i = 0; i < workplace_element_added_number; i++){
-                    if (i == workplace_number) continue; 
-
-                    if (directionsRenderers[i].getDirections().request.travelMode == 'TRANSIT'){
-                        var transit_steps_length = directionsRenderers[i].getDirections().routes[0].legs[0].steps.length;
-                        for (let j = 0; j < transit_steps_length - 1; j++){
-                            try {
-                                directionsRenderers[i].getDirections().routes[0].legs[0].steps[j].transit = null;
-                            } catch (err) {
-                                // no transitline in this step
-                            }
-                        }
-                        directionsRenderers[i].setMap(map);
-                    }
-                }
+                // remove previous transitline markers for all routes on screen
+                removeAllOtherTransitLineMarkers(workplace_number);
+                
                 break;
         }
 
@@ -297,6 +284,35 @@ function setRouting(workplace_number){
                 }
             }
         );
+    }
+}
+
+function removeAllOtherTransitLineMarkers(workplace_number){
+
+    for (let i = 0; i < workplace_element_added_number; i++){
+                    
+        //current route being checked so skip this one
+        if (i == workplace_number) continue; 
+
+        // check if no route set 
+        try {
+            directionsRenderers[i].getDirections(); // should through undefined error
+        } catch {
+            continue;
+        }
+
+        if (directionsRenderers[i].getDirections().request.travelMode == 'TRANSIT'){
+            var transit_steps_length = directionsRenderers[i].getDirections()
+                .routes[0].legs[0].steps.length;
+            for (let j = 0; j < transit_steps_length - 1; j++){
+                try {
+                    directionsRenderers[i].getDirections().routes[0].legs[0].steps[j].transit = null;
+                } catch (err) {
+                    // no transitline in this step
+                }
+            }
+            directionsRenderers[i].setMap(map);
+        }
     }
 }
 
