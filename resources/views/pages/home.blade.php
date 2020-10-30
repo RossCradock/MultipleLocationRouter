@@ -172,5 +172,5 @@ TODO
 
         myhousematescommute
 
-    Set up meta data for robots and search
+        need an icon for the page
 --}}
